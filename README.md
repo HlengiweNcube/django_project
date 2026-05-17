@@ -372,3 +372,28 @@ This created all required authentication and session tables inside PostgreSQL.
 - Better alignment with enterprise web applications
 
 The application was successfully deployed on Render and connected to a PostgreSQL production database using secure environment variables.
+
+# Authentication and Authorization
+
+The system uses Django's built-in authentication framework to manage user accounts securely.
+
+## Features Implemented
+
+- User registration
+- User login/logout
+- Session management
+- Protected dashboard
+- Password hashing
+- Authentication validation
+
+## Security Features
+
+Django automatically hashes passwords before storing them in PostgreSQL using secure cryptographic hashing algorithms.
+
+Protected routes were implemented using:
+
+```python
+@login_required
+```
+
+This prevents unauthorized users from accessing restricted pages.
