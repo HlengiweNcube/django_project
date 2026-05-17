@@ -100,3 +100,165 @@ The system allows businesses to manage stock inventory, track imports and export
 
 - Render
 
+# Deployment Configuration
+
+The application was deployed using Render.
+
+## Build Command
+
+```bash
+pip install -r requirements.txt
+```
+
+## Start Command
+
+```bash
+gunicorn django_final.wsgi:application
+```
+
+## Deployment Files
+
+### Procfile
+
+```text
+web: gunicorn django_final.wsgi:application
+```
+
+### runtime.txt
+
+```text
+python-3.12.3
+```
+
+---
+
+# Deployment Challenges and Solutions
+
+During deployment several configuration and deployment issues were encountered and resolved successfully.
+
+## Issue 1: Incorrect WSGI Module
+
+### Error
+
+```text
+ModuleNotFoundError: No module named 'django_project'
+```
+
+### Cause
+
+Render was configured to start the application using:
+
+```bash
+gunicorn django_project.wsgi:application
+```
+
+However, the actual Django project folder was named:
+
+```text
+django_final
+```
+
+### Solution
+
+The Render Start Command was updated to:
+
+```bash
+gunicorn django_final.wsgi:application
+```
+
+This resolved the deployment startup error.
+
+---
+
+## Issue 2: Git Repository Not Initialized
+
+### Error
+
+```text
+fatal: not a git repository
+```
+
+### Cause
+
+Git had not been initialized in the local project directory.
+
+### Solution
+
+Git was initialized using:
+
+```bash
+git init
+```
+
+The GitHub repository was then connected successfully.
+
+---
+
+## Issue 3: Push Rejected by GitHub
+
+### Error
+
+```text
+failed to push some refs
+```
+
+### Cause
+
+The remote GitHub repository already contained files that were not available locally.
+
+### Solution
+
+The repositories were synchronized using:
+
+```bash
+git pull origin main --allow-unrelated-histories
+```
+
+After merging histories, the project pushed successfully.
+
+---
+
+## Issue 4: Django DisallowedHost Error
+
+### Error
+
+```text
+Invalid HTTP_HOST header
+```
+
+### Cause
+
+The deployed Render domain was not included in Django's ALLOWED_HOSTS configuration.
+
+### Solution
+
+The following configuration was added to `settings.py`:
+
+```python
+ALLOWED_HOSTS = ['*']
+```
+
+This allowed the Render deployment domain to access the application successfully.
+
+---
+
+# Hosted Application
+
+Live Application URL:
+
+https://django-project-e9gn.onrender.com
+
+---
+
+# Lessons Learned
+
+Through this project the following skills were strengthened:
+
+- Django deployment and configuration
+- Git and GitHub version control
+- Render cloud hosting
+- Debugging deployment issues
+- Managing Django settings and security configurations
+- Configuring Gunicorn and WhiteNoise
+- Understanding Django application structure
+
