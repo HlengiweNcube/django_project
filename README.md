@@ -289,3 +289,84 @@ django_project/
 │   ├── css/
 │   ├── js/
 │   └── images/
+
+# PostgreSQL Integration
+
+The application uses PostgreSQL as the primary relational database management system instead of SQLite.
+
+A PostgreSQL database was provisioned using Render and connected securely to the Django application using environment variables.
+
+---
+
+## PostgreSQL Packages Installed
+
+```bash
+pip install psycopg2-binary dj-database-url python-dotenv
+```
+
+---
+
+## Django Database Configuration
+
+The default SQLite configuration was replaced with PostgreSQL configuration using `dj-database-url`.
+
+```python
+DATABASES = {
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    )
+}
+```
+
+---
+
+## Environment Variable Configuration
+
+Sensitive database credentials were stored securely using environment variables.
+
+A `.env` file was used locally:
+
+```text
+DATABASE_URL=postgresql://african_fashion_db_oxzx_user:CB7HtJEe8YqMAow2aVpo95nV1jCM7oNC@dpg-d7tib1egvqtc73cpf1eg-a.frankfurt-postgres.render.com/african_fashion_db_oxzx
+```
+
+Render environment variables were also configured for production deployment.
+
+---
+
+## Migration Process
+
+Database migrations were successfully applied to PostgreSQL using:
+
+```bash
+python manage.py migrate
+```
+
+
+## Issue : PostgreSQL Host Translation Error
+
+### Error
+
+```text
+could not translate host name
+```
+
+### Cause
+
+The Render Internal Database URL was incorrectly used for local development.
+
+### Solution
+
+The External Database URL was used locally inside the `.env` file, while the Internal Database URL remained configured on Render.
+
+This created all required authentication and session tables inside PostgreSQL.
+
+---
+
+## Benefits of PostgreSQL Integration
+
+- Improved scalability
+- Better production readiness
+- Secure remote database hosting
+- Strong relational database support
+- Better alignment with enterprise web applications
