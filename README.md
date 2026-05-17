@@ -262,3 +262,30 @@ Through this project the following skills were strengthened:
 - Configuring Gunicorn and WhiteNoise
 - Understanding Django application structure
 
+## Final Architecture
+
+django_project/
+│
+├── manage.py
+├── requirements.txt
+├── Procfile
+├── runtime.txt
+├── README.md
+│
+├── django_final/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── users/
+├── inventory/
+├── imports/
+├── exports/
+├── messaging/
+│
+├── templates/
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
