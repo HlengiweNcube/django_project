@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imports</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>Import Records</h2>
+
+        <a href="/imports/add/" class="btn btn-success">
+            Add Import
+        </a>
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Product</th>
+                <th>Supplier</th>
+                <th>Quantity</th>
+                <th>Import Date</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in imports %}
+
+            <tr>
+
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.supplier_name }}</td>
+                <td>{{ item.quantity_imported }}</td>
+                <td>{{ item.import_date }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

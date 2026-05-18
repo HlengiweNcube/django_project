@@ -480,3 +480,53 @@ Unauthorized users are redirected to the login page.
 - Bootstrap 5
 - HTML Templates
 - Python
+
+# CRUD Operations Demonstration
+
+The inventory system supports full CRUD functionality using Django ORM and PostgreSQL.
+
+## Create
+
+Products can be added through the Django form interface.
+
+```sql
+SELECT * FROM inventory_product;
+```
+
+New products appear immediately in PostgreSQL.
+
+---
+
+## Read
+
+Products are displayed dynamically using Bootstrap tables.
+
+The data is retrieved directly from PostgreSQL using Django ORM queries.
+
+---
+
+## Update
+
+Existing products can be edited using the Update Product feature.
+
+Updated values are immediately reflected in PostgreSQL.
+
+---
+
+## Delete
+
+Products can be removed using the Delete Product feature.
+
+Deleted records are removed from PostgreSQL permanently.
+
+---
+
+## PostgreSQL Verification
+
+CRUD functionality was verified using SQL queries against the PostgreSQL database.
+
+### Example Query
+
+```sql
+SELECT * FROM inventory_product;
+```

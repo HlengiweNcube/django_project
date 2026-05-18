@@ -30,6 +30,7 @@ def add_product(request):
             return redirect('product_list')
 
     else:
+
         form = ProductForm()
 
     return render(
@@ -38,7 +39,8 @@ def add_product(request):
         {'form': form}
     )
 
-    @login_required
+
+@login_required
 def update_product(request, product_id):
 
     product = Product.objects.get(id=product_id)
@@ -51,6 +53,7 @@ def update_product(request, product_id):
         )
 
         if form.is_valid():
+
             form.save()
 
             return redirect('product_list')
