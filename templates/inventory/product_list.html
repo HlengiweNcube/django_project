@@ -26,10 +26,11 @@
         <thead class="table-dark">
 
             <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
             </tr>
 
         </thead>
@@ -44,7 +45,23 @@
                 <td>{{ product.category }}</td>
                 <td>{{ product.quantity }}</td>
                 <td>${{ product.price }}</td>
+                <td>
 
+            <a
+                href="/products/update/{{ product.id }}/"
+                class="btn btn-warning btn-sm"
+            >
+                Edit
+            </a>
+
+            <a
+                href="/products/delete/{{ product.id }}/"
+                class="btn btn-danger btn-sm"
+            >
+                Delete
+            </a>
+
+        </td>
             </tr>
 
             {% endfor %}
