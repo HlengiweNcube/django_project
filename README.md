@@ -423,3 +423,60 @@ python manage.py migrate
 ```
 
 This automatically generated the required PostgreSQL tables.
+
+## Inventory Database Integration
+
+The inventory module was developed using Django models integrated with PostgreSQL.
+
+### Product Model
+
+The Product model stores:
+
+- Product name
+- Category
+- Quantity
+- Price
+- Description
+- Creation timestamp
+
+### Features Implemented
+
+- Add products
+- View products
+- Store products in PostgreSQL
+- Bootstrap inventory tables
+- Authentication-protected inventory routes
+
+### Database Migrations
+
+Database tables were created using Django migrations:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### Authentication Protection
+
+Inventory pages are protected using:
+
+```python
+@login_required
+```
+
+Unauthorized users are redirected to the login page.
+
+### URLs
+
+| Route | Description |
+|---|---|
+| `/products/` | Product list |
+| `/products/add/` | Add new product |
+
+### Technologies Used
+
+- Django ORM
+- PostgreSQL
+- Bootstrap 5
+- HTML Templates
+- Python
