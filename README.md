@@ -397,3 +397,29 @@ Protected routes were implemented using:
 ```
 
 This prevents unauthorized users from accessing restricted pages.
+
+# Inventory Management Setup
+
+The inventory management module was initialized using Django models and PostgreSQL integration.
+
+## Product Model
+
+A Product model was created to store:
+
+- Product name
+- Category
+- Quantity
+- Price
+- Description
+- Creation date
+
+## Database Integration
+
+The inventory data is stored in PostgreSQL using Django ORM migrations.
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+This automatically generated the required PostgreSQL tables.
