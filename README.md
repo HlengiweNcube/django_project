@@ -530,3 +530,96 @@ CRUD functionality was verified using SQL queries against the PostgreSQL databas
 ```sql
 SELECT * FROM inventory_product;
 ```
+
+# Import Management System
+
+The application includes a complete Import Management module integrated with PostgreSQL and Django ORM.
+
+## Features Implemented
+
+- Add import records
+- Link imports to inventory products
+- Track supplier information
+- Record import quantities
+- Store import dates
+- Automatic stock quantity updates
+
+---
+
+# Relational Database Design
+
+The project demonstrates relational database principles using Django ForeignKey relationships.
+
+## PostgreSQL Tables
+
+| Table | Purpose |
+|---|---|
+| inventory_product | Stores product inventory |
+| imports_importrecord | Stores import transactions |
+
+---
+
+# Foreign Key Relationship
+
+The import system links products using:
+
+```python
+product = models.ForeignKey(Product, on_delete=models.CASCADE)
+```
+
+This creates a relational database relationship between imports and inventory products.
+
+---
+
+# Automatic Stock Updates
+
+When a new import record is created:
+
+1. A transaction is stored in `imports_importrecord`
+2. The linked product quantity is automatically updated
+
+Example:
+
+| Product | Before Import | Imported | Final Quantity |
+|---|---|---|---|
+| T-Shirt | 50 | 20 | 70 |
+
+This demonstrates backend business logic integration using Django ORM.
+
+---
+
+# PostgreSQL Verification
+
+The following SQL query was used to verify import records:
+
+```sql
+SELECT * FROM imports_importrecord;
+```
+
+The following SQL query was used to verify inventory updates:
+
+```sql
+SELECT * FROM inventory_product;
+```
+
+---
+
+# Frontend Features
+
+The Import Management module includes:
+
+- Bootstrap forms
+- Bootstrap tables
+- HTML5 date picker
+- Authentication-protected routes
+
+---
+
+# CRUD Operations Demonstrated
+
+| Operation | Description |
+|---|---|
+| Create | Add import records |
+| Read | View import history |
+| Update | Inventory quantities automatically updated |
+| Delete | Records removable from PostgreSQL |
