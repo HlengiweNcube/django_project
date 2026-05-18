@@ -1,3 +1,39 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+from .models import Product
+from .forms import ProductForm
+
+
+@login_required
+def product_list(request):
+
+    products = Product.objects.all()
+
+    return render(
+        request,
+        'inventory/product_list.html',
+        {'products': products}
+    )
+
+
+@login_required
+def add_product(request):
+
+    if request.method == 'POST':
+
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('product_list')
+
+    else:
+        form = ProductForm()
+
+    return render(
+        request,
+        'inventory/add_product.html',
+        {'form': form}
+    )
