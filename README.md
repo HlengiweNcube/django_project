@@ -623,3 +623,94 @@ The Import Management module includes:
 | Read | View import history |
 | Update | Inventory quantities automatically updated |
 | Delete | Records removable from PostgreSQL |
+
+# Export Management System
+
+The application includes a complete Export Management module integrated with Django and PostgreSQL.
+
+## Features Implemented
+
+- Add export records
+- Track customer information
+- Record exported quantities
+- Store export dates
+- Link exports to inventory products
+- Automatic stock quantity reduction
+
+---
+
+# Relational Database Design
+
+The export system uses Django ForeignKey relationships to connect export records with products stored in the inventory system.
+
+## PostgreSQL Tables
+
+| Table | Purpose |
+|---|---|
+| inventory_product | Stores current inventory products |
+| exports_exportrecord | Stores export transactions |
+
+---
+
+# Automatic Inventory Reduction
+
+When an export record is created:
+
+1. A transaction is stored in `exports_exportrecord`
+2. The linked product quantity is automatically reduced
+
+### Example
+
+| Product | Before Export | Exported | Remaining Stock |
+|---|---|---|---|
+| T-Shirt | 70 | 10 | 60 |
+
+This demonstrates backend business logic integration using Django ORM and PostgreSQL.
+
+---
+
+# PostgreSQL Verification
+
+The following SQL queries were used to verify export transactions and stock updates:
+
+```sql
+SELECT * FROM exports_exportrecord;
+```
+![alt text](image.png)
+
+```sql
+SELECT * FROM inventory_product;
+```
+![alt text](image-1.png)
+---
+
+# Frontend Features
+
+The Export Management module includes:
+
+- Bootstrap forms
+- Bootstrap tables
+- HTML5 date picker
+- Authentication-protected routes
+
+---
+
+# CRUD Operations Demonstrated
+
+| Operation | Description |
+|---|---|
+| Create | Add export records |
+| Read | View export history |
+| Update | Inventory quantities automatically reduced |
+| Delete | Export records removable from PostgreSQL |
+
+---
+
+# Business Logic Demonstration
+
+The system automatically synchronizes inventory quantities with import and export transactions.
+
+- Imports increase stock quantities
+- Exports reduce stock quantities
+
+This demonstrates real-world inventory management functionality using relational databases and Django ORM.
