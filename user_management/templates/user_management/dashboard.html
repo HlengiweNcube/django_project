@@ -25,14 +25,100 @@
 
 <div class="container mt-5">
 
-    <div class="card shadow">
-        <div class="card-body">
+    <h1 class="mb-4">
+        Welcome {{ request.user.username }}
+    </h1>
 
-            <h1>Welcome {{ request.user.username }}</h1>
+    <div class="row">
 
-            <p>You are successfully logged in.</p>
+        <div class="col-md-4">
+
+            <div class="card bg-primary text-white mb-3">
+
+                <div class="card-body">
+
+                    <h3>Total Products</h3>
+
+                    <h1>{{ total_products }}</h1>
+
+                </div>
+
+            </div>
 
         </div>
+
+        <div class="col-md-4">
+
+            <div class="card bg-success text-white mb-3">
+
+                <div class="card-body">
+
+                    <h3>Total Imports</h3>
+
+                    <h1>{{ total_imports }}</h1>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card bg-danger text-white mb-3">
+
+                <div class="card-body">
+
+                    <h3>Total Exports</h3>
+
+                    <h1>{{ total_exports }}</h1>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card mt-4">
+
+        <div class="card-header bg-warning">
+
+            <h3>
+                Low Stock Alerts
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if low_stock_products %}
+
+                <ul class="list-group">
+
+                    {% for product in low_stock_products %}
+
+                    <li class="list-group-item">
+
+                        ⚠ {{ product.name }}
+                        has low stock
+                        ({{ product.quantity }} remaining)
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <p>No low stock alerts.</p>
+
+            {% endif %}
+
+        </div>
+
     </div>
 
 </div>
