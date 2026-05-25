@@ -7,6 +7,8 @@ from imports.models import ImportRecord
 from exports.models import ExportRecord
 
 from .forms import RegisterForm
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 
 
 def register_view(request):

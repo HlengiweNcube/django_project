@@ -47,6 +47,23 @@
                 <td>${{ product.price }}</td>
                 <td>
 
+    <a
+        href="/products/update/{{ product.id }}/"
+        class="btn btn-warning btn-sm"
+    >
+        Update
+    </a>
+
+    <a
+        href="/products/delete/{{ product.id }}/"
+        class="btn btn-danger btn-sm"
+    >
+        Delete
+    </a>
+
+</td>
+                <td>
+
             <a
                 href="/products/update/{{ product.id }}/"
                 class="btn btn-warning btn-sm"

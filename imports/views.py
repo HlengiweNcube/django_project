@@ -46,3 +46,31 @@ def add_import(request):
         'imports/add_import.html',
         {'form': form}
     )
+@login_required
+def add_export(request):
+
+    if request.method == 'POST':
+
+        form = ExportRecordForm(request.POST)
+
+        if form.is_valid():
+
+            export_record = form.save()
+
+            product = export_record.product
+
+            product.quantity -= export_record.quantity_exported
+
+            product.save()
+
+            return redirect('export_list')
+
+    else:
+
+        form = ExportRecordForm()
+
+    return render(
+        request,
+        'exports/add_export.html',
+        {'form': form}
+    )
