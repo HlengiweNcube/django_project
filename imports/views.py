@@ -51,7 +51,7 @@ def add_export(request):
 
     if request.method == 'POST':
 
-        form = ExportRecordForm(request.POST)
+        form = ImportRecordForm(request.POST)
 
         if form.is_valid():
 
@@ -67,7 +67,7 @@ def add_export(request):
 
     else:
 
-        form = ExportRecordForm()
+        form = ImportRecordForm()
 
     return render(
         request,
