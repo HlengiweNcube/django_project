@@ -714,3 +714,75 @@ The system automatically synchronizes inventory quantities with import and expor
 - Exports reduce stock quantities
 
 This demonstrates real-world inventory management functionality using relational databases and Django ORM.
+
+# Dashboard and Inventory Monitoring
+
+The system includes a dynamic dashboard for inventory monitoring and business analytics.
+
+## Dashboard Features
+
+- Total products counter
+- Total imports counter
+- Total exports counter
+- Low stock alerts
+- Dynamic inventory statistics
+
+---
+
+# Business Logic
+
+The dashboard automatically retrieves data from PostgreSQL using Django ORM queries.
+
+## Example ORM Queries
+
+```python
+Product.objects.count()
+
+ImportRecord.objects.count()
+
+ExportRecord.objects.count()
+```
+
+---
+
+# Low Stock Monitoring
+
+Products with stock quantities below 10 are automatically flagged as low stock items.
+
+### Example Alert
+
+```text
+⚠ T-Shirt has low stock (7 remaining)
+```
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+This demonstrates:
+
+- Conditional rendering
+- Real-time inventory monitoring
+- Backend business logic
+- Dynamic frontend updates
+
+---
+
+# Frontend Technologies
+
+The dashboard interface uses:
+
+- Bootstrap cards
+- Bootstrap alerts
+- Dynamic Django templates
+- Responsive design
+
+---
+
+# PostgreSQL Integration
+
+Dashboard statistics are generated directly from PostgreSQL tables using Django ORM aggregation queries.
+
+## Additional Features
+
+- User profile management
+- Password reset functionality
+- Email recovery support
