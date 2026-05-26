@@ -78,3 +78,31 @@ def logout_view(request):
     logout(request)
 
     return redirect('login')
+
+@login_required
+def update_profile(request):
+
+    if request.method == 'POST':
+
+        form = UpdateProfileForm(
+            request.POST,
+            instance=request.user
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('dashboard')
+
+    else:
+
+        form = UpdateProfileForm(
+            instance=request.user
+        )
+
+    return render(
+        request,
+        'user_management/update_profile.html',
+        {'form': form}
+    )
