@@ -17,6 +17,13 @@
 
 </div>
 
+<input
+    type="text"
+    id="searchInput"
+    class="form-control mb-3"
+    placeholder="Search products..."
+>
+
 <table class="table table-bordered table-striped">
 
     <thead class="table-dark">
@@ -56,12 +63,13 @@
                     Update
                 </a>
 
-                <a
-                    href="/products/delete/{{ product.id }}/"
-                    class="btn btn-danger btn-sm"
-                >
-                    Delete
-                </a>
+               <a
+                href="/products/delete/{{ product.id }}/"
+                class="btn btn-danger btn-sm"
+                onclick="return confirmDelete();"
+                                >
+                Delete
+            </a>
 
             </td>
 
@@ -73,4 +81,5 @@
 
 </table>
 
+<script src="{% static 'js/product_search.js' %}"></script>
 {% endblock %}
