@@ -47,13 +47,5 @@ path(
     ),
     name='password_reset_confirm'
 ),
-
-path(
-    'reset/done/',
-    auth_views.PasswordResetCompleteView.as_view(
-        template_name='user_management/password_reset_complete.html'
-    ),
-    name='password_reset_complete'
-),
-
+path('', include('messaging.urls')),
 ]
