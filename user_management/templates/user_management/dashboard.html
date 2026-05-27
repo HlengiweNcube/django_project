@@ -1,43 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+{% extends 'base.html' %}
 
-    <div class="container-fluid">
+{% block content %}
 
-        <span class="navbar-brand">
-            Stock Management System
-        </span>
+<div class="card shadow">
 
-        <div>
+    <div class="card-body">
 
-            <a href="/dashboard/" class="btn btn-secondary">
-                Dashboard
-            </a>
+        <h1>
+            Welcome {{ request.user.username }}
+        </h1>
 
-            <a href="/products/" class="btn btn-primary">
-                Products
-            </a>
+        <p>
+            You are successfully logged in.
+        </p>
 
-            <a href="/imports/" class="btn btn-success">
-                Imports
-            </a>
+        <hr>
 
-            <a href="/exports/" class="btn btn-warning">
-                Exports
-            </a>
+        <div class="row">
 
-            <a href="/messages/" class="btn btn-info">
-                Inbox
-            </a>
+            <div class="col-md-4">
 
-            <a href="/profile/update/" class="btn btn-light">
-                Profile
-            </a>
+                <div class="card bg-primary text-white mb-3">
 
-            <a href="/logout/" class="btn btn-danger">
-                Logout
-            </a>
+                    <div class="card-body">
+
+                        <h5>Total Products</h5>
+
+                        <h2>{{ total_products }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card bg-success text-white mb-3">
+
+                    <div class="card-body">
+
+                        <h5>Total Imports</h5>
+
+                        <h2>{{ total_imports }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card bg-warning text-dark mb-3">
+
+                    <div class="card-body">
+
+                        <h5>Total Exports</h5>
+
+                        <h2>{{ total_exports }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-</nav>
+</div>
+
+{% endblock %}

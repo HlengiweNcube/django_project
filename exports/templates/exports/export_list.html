@@ -1,61 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exports</title>
+{% extends 'base.html' %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+{% block content %}
 
-<div class="container mt-5">
+<div class="d-flex justify-content-between mb-3">
 
-    <div class="d-flex justify-content-between mb-3">
+    <h2>
+        Export Records
+    </h2>
 
-        <h2>Export Records</h2>
-
-        <a href="/exports/add/" class="btn btn-success">
-            Add Export
-        </a>
-
-    </div>
-
-    <table class="table table-bordered table-striped">
-
-        <thead class="table-dark">
-
-            <tr>
-
-                <th>Product</th>
-                <th>Customer</th>
-                <th>Quantity</th>
-                <th>Export Date</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            {% for item in exports %}
-
-            <tr>
-
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.customer_name }}</td>
-                <td>{{ item.quantity_exported }}</td>
-                <td>{{ item.export_date }}</td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
+    <a
+        href="/exports/add/"
+        class="btn btn-success"
+    >
+        Add Export
+    </a>
 
 </div>
 
-</body>
-</html>
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Product</th>
+            <th>Customer</th>
+            <th>Quantity</th>
+            <th>Export Date</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for item in exports %}
+
+        <tr>
+
+            <td>{{ item.product.name }}</td>
+
+            <td>{{ item.customer_name }}</td>
+
+            <td>{{ item.quantity_exported }}</td>
+
+            <td>{{ item.export_date }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
