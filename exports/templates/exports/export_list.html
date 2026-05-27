@@ -8,12 +8,14 @@
         Export Records
     </h2>
 
+    {% if perms.exports.add_exportrecord %}
     <a
         href="/exports/add/"
         class="btn btn-success"
     >
         Add Export
     </a>
+    {% endif %}
 
 </div>
 

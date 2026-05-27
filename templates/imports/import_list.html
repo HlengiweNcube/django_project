@@ -8,12 +8,14 @@
         Import Records
     </h2>
 
+    {% if perms.imports.add_importrecord %}
     <a
         href="/imports/add/"
         class="btn btn-success"
     >
         Add Import
     </a>
+    {% endif %}
 
 </div>
 
