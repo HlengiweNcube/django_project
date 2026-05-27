@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import ExportRecord
 
-# Register your models here.
+
+@admin.register(ExportRecord)
+class ExportRecordAdmin(admin.ModelAdmin):
+	list_display = ('product', 'customer_name', 'quantity_exported', 'export_date', 'created_at')
+	search_fields = ('product__name', 'customer_name')
+	list_filter = ('export_date',)
