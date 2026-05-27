@@ -55,7 +55,8 @@ def archive_message(request, message_id):
 
     message = get_object_or_404(
         Message,
-        id=message_id
+        id=message_id,
+        receiver=request.user
     )
 
     message.is_archived = True

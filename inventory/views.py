@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Product
 from .forms import ProductForm
@@ -18,6 +18,7 @@ def product_list(request):
 
 
 @login_required
+@permission_required('inventory.add_product', raise_exception=True)
 def add_product(request):
 
     if request.method == 'POST':
@@ -41,9 +42,10 @@ def add_product(request):
 
 
 @login_required
+@permission_required('inventory.change_product', raise_exception=True)
 def update_product(request, product_id):
 
-    product = Product.objects.get(id=product_id)
+    product = get_object_or_404(Product, id=product_id)
 
     if request.method == 'POST':
 
@@ -70,9 +72,10 @@ def update_product(request, product_id):
 
 
 @login_required
+@permission_required('inventory.delete_product', raise_exception=True)
 def delete_product(request, product_id):
 
-    product = Product.objects.get(id=product_id)
+    product = get_object_or_404(Product, id=product_id)
 
     product.delete()
 

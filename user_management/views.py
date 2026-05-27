@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm
 from inventory.models import Product
 from imports.models import ImportRecord
 from exports.models import ExportRecord
 
 from .forms import RegisterForm, UpdateProfileForm
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render, redirect
 
 
 def register_view(request):
@@ -17,6 +16,8 @@ def register_view(request):
 
         if form.is_valid():
             user = form.save()
+            staff_group, _ = Group.objects.get_or_create(name='Staff')
+            user.groups.add(staff_group)
             login(request, user)
 
             return redirect('dashboard')

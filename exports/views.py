@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import ExportRecord
 from .forms import ExportRecordForm
@@ -19,6 +19,7 @@ def export_list(request):
 
 
 @login_required
+@permission_required('exports.add_exportrecord', raise_exception=True)
 def add_export(request):
 
     if request.method == 'POST':

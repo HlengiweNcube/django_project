@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import ImportRecord
 from .forms import ImportRecordForm
@@ -18,6 +18,7 @@ def import_list(request):
 
 
 @login_required
+@permission_required('imports.add_importrecord', raise_exception=True)
 def add_import(request):
 
     if request.method == 'POST':
@@ -43,33 +44,5 @@ def add_import(request):
     return render(
         request,
         'imports/add_import.html',
-        {'form': form}
-    )
-@login_required
-def add_export(request):
-
-    if request.method == 'POST':
-
-        form = ImportRecordForm(request.POST)
-
-        if form.is_valid():
-
-            export_record = form.save()
-
-            product = export_record.product
-
-            product.quantity -= export_record.quantity_exported
-
-            product.save()
-
-            return redirect('export_list')
-
-    else:
-
-        form = ImportRecordForm()
-
-    return render(
-        request,
-        'exports/add_export.html',
         {'form': form}
     )
