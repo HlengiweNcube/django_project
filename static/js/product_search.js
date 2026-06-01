@@ -1,30 +1,26 @@
-const searchInput =
-    document.getElementById('searchInput');
 
-searchInput.addEventListener('keyup', function () {
+console.log("JS Loaded");
+document.addEventListener("DOMContentLoaded", function () {
 
-    const filter =
-        searchInput.value.toLowerCase();
+    const searchInput = document.getElementById("searchInput");
 
-    const rows =
-        document.querySelectorAll('tbody tr');
+    searchInput.addEventListener("keyup", function () {
 
-    rows.forEach(function(row) {
+        let filter = searchInput.value.toLowerCase();
 
-        const text =
-            row.innerText.toLowerCase();
+        let rows = document.querySelectorAll("#productTable tr");
 
-        if (text.includes(filter)) {
+        rows.forEach(function(row) {
 
-            row.style.display = '';
+            let text = row.textContent.toLowerCase();
 
-        }
+            if (text.includes(filter)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
 
-        else {
-
-            row.style.display = 'none';
-
-        }
+        });
 
     });
 
