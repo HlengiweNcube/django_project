@@ -149,11 +149,27 @@ copy .env.example .env
 python manage.py migrate
 ```
 
-### 6) Create admin account
+### 6) Create superuser (admin account)
 
 ```bash
 python manage.py createsuperuser
 ```
+
+You will be prompted for:
+
+- Username
+- Email address (optional)
+- Password
+
+After creation, log in to Django Admin at:
+
+- http://127.0.0.1:8000/admin/
+
+Use this superuser account to:
+
+- Manage users and groups
+- Assign users to `Manager` or `Staff`
+- Access all admin-managed data
 
 ### 7) Run the app
 
