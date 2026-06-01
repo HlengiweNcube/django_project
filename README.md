@@ -94,6 +94,12 @@ django_project/
   static/
 ```
 
+Full generated structure evidence is included in this repository as:
+
+- `project_structure_tree.txt`
+
+This file was generated from the project root and provides a complete tree listing that can be used for submission review.
+
 ## Local Setup
 
 ### 1) Clone and enter project
