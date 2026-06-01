@@ -71,6 +71,19 @@ Why this exists:
 - `.gz` versions let the server send smaller files when supported by the browser
 - These are build/deployment artifacts and are usually not edited manually
 
+You may also see generated admin JavaScript files in `staticfiles/admin/js/` (for example hashed and `.gz` variants of `jquery.init.js`). These are produced by Django static collection and should be treated as generated output.
+
+### 8) Development Workspace Note (Explorer Noise)
+
+To keep the project view clean during development, generated folders are hidden in VS Code Explorer via workspace settings:
+
+- `staticfiles/`
+- `venv/`
+- `__pycache__/`
+- `*.pyc`
+
+These files/folders are build or environment artifacts and are not part of the app source code.
+
 ## Project Structure
 
 ```text
