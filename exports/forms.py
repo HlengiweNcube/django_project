@@ -26,3 +26,16 @@ class ExportRecordForm(forms.ModelForm):
             ),
 
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        product = cleaned_data.get('product')
+        quantity_exported = cleaned_data.get('quantity_exported')
+
+        if product and quantity_exported and quantity_exported > product.quantity:
+            self.add_error(
+                'quantity_exported',
+                'Cannot export more than current stock quantity.'
+            )
+
+        return cleaned_data
