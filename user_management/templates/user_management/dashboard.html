@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<div class="card shadow">
+<div class="card dashboard-panel">
 
-    <div class="card-body">
+    <div class="card-body dashboard-panel-body">
 
         <h1>
-            Welcome {{ request.user.username }}
+            Welcome {{ display_name }}
         </h1>
 
         <p>
@@ -84,16 +84,18 @@
 
         </div>
 
-        <button
-            class="btn btn-outline-secondary mb-3"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#lowStockCollapse"
-            aria-expanded="false"
-            aria-controls="lowStockCollapse"
-        >
-            Toggle Low Stock Items
-        </button>
+        <div class="dashboard-toggle-wrap">
+            <button
+            class="btn btn-outline-secondary dashboard-toggle-btn"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#lowStockCollapse"
+                aria-expanded="false"
+                aria-controls="lowStockCollapse"
+            >
+                Toggle Low Stock Items
+            </button>
+        </div>
 
         <div class="collapse" id="lowStockCollapse">
             <div class="card card-body">
