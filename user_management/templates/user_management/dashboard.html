@@ -66,6 +66,47 @@
 
             </div>
 
+            <div class="col-md-4">
+
+                <div class="card bg-info text-white mb-3">
+
+                    <div class="card-body">
+
+                        <h5>Total Projects</h5>
+
+                        <h2>{{ total_projects }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-outline-secondary mb-3"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#lowStockCollapse"
+            aria-expanded="false"
+            aria-controls="lowStockCollapse"
+        >
+            Toggle Low Stock Items
+        </button>
+
+        <div class="collapse" id="lowStockCollapse">
+            <div class="card card-body">
+                {% if low_stock_products %}
+                <ul class="mb-0">
+                    {% for product in low_stock_products %}
+                    <li>{{ product.name }} ({{ product.quantity }} left)</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="mb-0">No low stock products currently.</p>
+                {% endif %}
+            </div>
         </div>
 
     </div>

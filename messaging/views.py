@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Message
 
@@ -36,6 +37,7 @@ def send_message(request):
             message.sender = request.user
 
             message.save()
+            messages.success(request, 'Message sent successfully.')
 
             return redirect('inbox')
 
@@ -62,5 +64,6 @@ def archive_message(request, message_id):
     message.is_archived = True
 
     message.save()
+    messages.success(request, 'Message archived.')
 
     return redirect('inbox')

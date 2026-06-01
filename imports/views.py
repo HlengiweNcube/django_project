@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib import messages
 
 from .models import ImportRecord
 from .forms import ImportRecordForm
@@ -34,6 +35,7 @@ def add_import(request):
             product.quantity += import_record.quantity_imported
 
             product.save()
+            messages.success(request, 'Import recorded and stock updated.')
 
             return redirect('import_list')
 

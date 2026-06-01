@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib import messages
 
 from .models import ExportRecord
 from .forms import ExportRecordForm
@@ -35,6 +36,7 @@ def add_export(request):
             product.quantity -= export_record.quantity_exported
 
             product.save()
+            messages.success(request, 'Export recorded and stock updated.')
 
             return redirect('export_list')
 
