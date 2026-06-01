@@ -38,7 +38,8 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            messages.success(request, f'Welcome back, {user.username}.')
+            display_name = user.get_full_name().strip() or user.username
+            messages.success(request, f'Welcome back, {display_name}.')
 
             return redirect('dashboard')
 
@@ -63,7 +64,11 @@ def dashboard_view(request):
         quantity__lt=10
     )
 
+    display_name = request.user.get_full_name().strip() or request.user.username
+
     context = {
+
+        'display_name': display_name,
 
         'total_products': total_products,
 

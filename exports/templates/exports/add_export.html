@@ -14,14 +14,22 @@
 
             {% csrf_token %}
 
+            {% if not has_products %}
+            <div class="alert alert-warning" role="alert">
+                No products are available yet. Add a product first, then come back to record exports.
+            </div>
+            {% endif %}
+
             {{ form.as_p }}
 
+            {% if has_products %}
             <button
                 type="submit"
                 class="btn btn-danger"
             >
                 Save Export
             </button>
+            {% endif %}
 
         </form>
 

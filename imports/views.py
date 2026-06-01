@@ -4,6 +4,7 @@ from django.contrib import messages
 
 from .models import ImportRecord
 from .forms import ImportRecordForm
+from inventory.models import Product
 
 
 @login_required
@@ -43,8 +44,13 @@ def add_import(request):
 
         form = ImportRecordForm()
 
+    has_products = Product.objects.exists()
+
     return render(
         request,
         'imports/add_import.html',
-        {'form': form}
+        {
+            'form': form,
+            'has_products': has_products,
+        }
     )

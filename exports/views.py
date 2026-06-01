@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from inventory.models import Product
 
 from .models import ExportRecord
 from .forms import ExportRecordForm
@@ -44,8 +45,13 @@ def add_export(request):
 
         form = ExportRecordForm()
 
+    has_products = Product.objects.exists()
+
     return render(
         request,
         'exports/add_export.html',
-        {'form': form}
+        {
+            'form': form,
+            'has_products': has_products,
+        }
     )
