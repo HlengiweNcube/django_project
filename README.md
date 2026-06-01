@@ -54,6 +54,23 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 - Secure cookie/HTTPS/HSTS settings enabled in production
 - Whitenoise static file pipeline for production
 
+### 7) Static File Naming (Why You See Multiple CSS Files)
+
+After running `collectstatic`, Django/Whitenoise can generate multiple versions of the same asset in `staticfiles/`.
+
+Example:
+
+- `autocomplete.css`: normal file name
+- `autocomplete.css.gz`: pre-compressed gzip version for faster transfer
+- `autocomplete.d24f10bdee41.css`: hashed file name used for cache busting
+- `autocomplete.d24f10bdee41.css.gz`: gzipped version of the hashed file
+
+Why this exists:
+
+- Hash in filename ensures browsers fetch updated assets when content changes
+- `.gz` versions let the server send smaller files when supported by the browser
+- These are build/deployment artifacts and are usually not edited manually
+
 ## Project Structure
 
 ```text
