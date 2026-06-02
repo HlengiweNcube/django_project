@@ -42,12 +42,24 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 
 ### 5) Frontend Stack
 
-- Django Templates with a shared base layout
-- Bootstrap 5 responsive UI
-- JavaScript product search (`static/js/product_search.js`)
-- JavaScript form validation (`static/js/form_validation.js`)
-- Responsive profile update layout with clearer labels, helper text, and larger tap targets
-- Accessibility improvements including skip links, visible focus states, and descriptive form labels
+| Item | Details |
+| --- | --- |
+| Django Templates | Shared base layout and reusable page templates across the project |
+| Bootstrap 5 | Responsive UI framework used for layout, cards, forms, buttons, and navigation |
+| JavaScript Product Search | `static/js/product_search.js` filters the product table as you type |
+| JavaScript Form Validation | `static/js/form_validation.js` helps validate form inputs before submission |
+| Responsive Profile Layout | Profile update page uses a two-column responsive layout with clearer spacing |
+| Accessibility Features | Skip link, visible focus states, descriptive labels, helper text, and larger tap targets |
+
+## Application Structure
+
+| Layer | Technology | Where It Is Used | Purpose |
+| --- | --- | --- | --- |
+| Backend Framework | Django | `django_final/settings.py`, `django_final/urls.py`, app `views.py`, `models.py`, `forms.py`, `admin.py`, and `signals.py` | Powers authentication, authorization, CRUD operations, and page rendering |
+| Database | PostgreSQL | Configured through `DATABASE_URL` in `.env` | Stores users, products, imports, exports, projects, and messages persistently |
+| Frontend | HTML | `templates/` and each app’s `templates/` folder | Renders the pages and forms seen by the user |
+| Frontend | CSS | `static/css/site.css` | Controls layout, spacing, colors, accessibility, and responsive appearance |
+| Frontend | JavaScript | `static/js/product_search.js` and `static/js/form_validation.js` | Adds search filtering, form validation, and interactive UI behavior |
 
 ### 6) Security Controls
 
