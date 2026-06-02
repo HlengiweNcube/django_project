@@ -24,6 +24,8 @@
 
 <body class="bg-light">
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
 
     <div class="container-fluid">
@@ -111,11 +113,11 @@
 
 </nav>
 
-<div class="container app-content mt-5">
+<main class="container app-content mt-5" id="main-content" tabindex="-1">
     {% if messages %}
-    <div class="mb-3">
+    <div class="mb-3" aria-live="polite" aria-atomic="true">
         {% for message in messages %}
-        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="status">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -127,7 +129,7 @@
 
     {% endblock %}
 
-</div>
+</main>
 
 <footer class="bg-dark text-white text-center p-3 mt-5">
 
