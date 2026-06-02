@@ -46,6 +46,8 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 - Bootstrap 5 responsive UI
 - JavaScript product search (`static/js/product_search.js`)
 - JavaScript form validation (`static/js/form_validation.js`)
+- Responsive profile update layout with clearer labels, helper text, and larger tap targets
+- Accessibility improvements including skip links, visible focus states, and descriptive form labels
 
 ### 6) Security Controls
 

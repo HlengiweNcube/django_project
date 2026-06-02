@@ -78,6 +78,39 @@ textarea:focus-visible {
   min-width: 220px;
 }
 
+.profile-section {
+  padding: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  background: #ffffff;
+}
+
+.profile-section-title {
+  margin-bottom: 1rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.profile-field input,
+.profile-field select,
+.profile-field textarea {
+  width: 100%;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.profile-form .form-text {
+  margin-top: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
