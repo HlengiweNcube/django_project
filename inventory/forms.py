@@ -14,6 +14,24 @@ class ProductForm(forms.ModelForm):
             'price',
             'description',
         ]
+        labels = {
+            'name': 'Product name',
+            'category': 'Category',
+            'quantity': 'Quantity in stock',
+            'price': 'Unit price',
+            'description': 'Product description',
+        }
+        help_texts = {
+            'category': 'Choose the category that best matches the product.',
+            'quantity': 'Enter the number of items currently available.',
+            'price': 'Enter the price per item.',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'autocomplete': 'off'}),
+            'quantity': forms.NumberInput(attrs={'min': 0, 'inputmode': 'numeric'}),
+            'price': forms.NumberInput(attrs={'min': 0, 'step': '0.01', 'inputmode': 'decimal'}),
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }
 
 
 class ProjectForm(forms.ModelForm):
@@ -29,6 +47,20 @@ class ProjectForm(forms.ModelForm):
             'status',
             'category',
         ]
+        labels = {
+            'name': 'Project name',
+            'description': 'Project description',
+            'start_date': 'Start date',
+            'end_date': 'End date',
+            'stakeholders': 'Stakeholders',
+            'status': 'Status',
+            'category': 'Category',
+        }
+        help_texts = {
+            'stakeholders': 'List names separated by commas.',
+            'status': 'Select the current stage of the project.',
+            'category': 'Choose the category that best matches the project.',
+        }
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),

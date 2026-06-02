@@ -13,6 +13,7 @@
     <a
         href="/products/add/"
         class="btn btn-success"
+        aria-label="Add a new product"
     >
         Add Product
     </a>
@@ -20,12 +21,18 @@
 
 </div>
 
+<label for="searchInput" class="form-label">Search products</label>
 <input
     type="text"
     id="searchInput"
     class="form-control mb-3"
     placeholder="Search products..."
+    aria-describedby="searchHelp"
 >
+
+<div id="searchHelp" class="form-text mb-3">
+    Type a product name, category, or quantity to filter the list.
+</div>
 
 <table class="table table-bordered table-striped">
 
@@ -62,6 +69,7 @@
                 <a
                     href="/products/update/{{ product.id }}/"
                     class="btn btn-warning btn-sm"
+                    aria-label="Update product {{ product.name }}"
                 >
                     Update
                 </a>
@@ -72,7 +80,8 @@
                 href="/products/delete/{{ product.id }}/"
                 class="btn btn-danger btn-sm"
                 onclick="return confirmDelete();"
-                                >
+                aria-label="Delete product {{ product.name }}"
+            >
                 Delete
             </a>
             {% endif %}
