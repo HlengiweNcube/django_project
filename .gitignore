@@ -18,6 +18,10 @@ staticfiles/
 db.sqlite3
 *.log
 
+# Test coverage artifacts
+.coverage
+htmlcov/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db

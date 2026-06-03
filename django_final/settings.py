@@ -10,7 +10,9 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
+env_path = BASE_DIR / '.env'
+if env_path.exists():
+    load_dotenv(env_path)
 
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-local-development-key')
@@ -24,6 +26,10 @@ ALLOWED_HOSTS = [
     ).split(',')
     if host.strip()
 ]
+
+render_external_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME', '').strip()
+if render_external_hostname and render_external_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_external_hostname)
 
 
 INSTALLED_APPS = [
