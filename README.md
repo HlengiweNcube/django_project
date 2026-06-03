@@ -51,6 +51,21 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 | Responsive Profile Layout | Profile update page uses a two-column responsive layout with clearer spacing |
 | Accessibility Features | Skip link, visible focus states, descriptive labels, helper text, and larger tap targets |
 
+## JavaScript Features
+
+The application uses client-side JavaScript to provide interactive behavior:
+
+- Real-time product search and filtering
+- Event-driven updates while typing in search inputs
+- Client-side form validation checks
+- Confirmation prompts for destructive actions
+- Dynamic UI response without requiring page reload for each interaction
+
+JavaScript source files:
+
+- `static/js/product_search.js`
+- `static/js/form_validation.js`
+
 ## Application Structure
 
 | Layer | Technology | Where It Is Used | Purpose |
@@ -248,7 +263,7 @@ EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 - Build command:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt && python manage.py collectstatic --noinput
 ```
 
 - Start command:
@@ -277,6 +292,8 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+If your Render database is newly attached, run migrations from the Render shell before first use.
+
 Verify:
 
 - Login/register flow
@@ -292,12 +309,38 @@ Run all tests:
 python manage.py test
 ```
 
+Latest local run result:
+
+- Ran 13 tests
+- Status: OK
+
+Run coverage:
+
+```bash
+coverage run manage.py test
+coverage report
+coverage html
+```
+
+Latest local coverage summary:
+
+- Total coverage: 87%
+- HTML report generated at `htmlcov/index.html`
+
 Coverage includes:
 
 - Registration and auth gate checks
 - Permission boundaries for product creation
 - Stock changes from import/export records
 - Message archive authorization
+
+## Accessibility Considerations
+
+- Skip-to-content link in the base template
+- Navigation landmark with ARIA label for assistive technologies
+- Explicit form labels and helper text for search inputs
+- Keyboard-accessible controls and visible focus handling
+- Responsive Bootstrap layout across device sizes
 
 ## Assignment Rubric Mapping
 
