@@ -1,7 +1,5 @@
 # Submission Evidence Checklist (Unit 11-14)
 
-Use this checklist to collect screenshot evidence in the correct order for submission.
-
 ## 1) Setup (before screenshots)
 
 1. Open terminal in project root.
@@ -121,3 +119,4 @@ Create a folder named `submission_evidence/` in the project root.
 Add this sentence to your report:
 
 "Password reset functionality was implemented using Django auth views. During local development, email delivery was tested using Django's console backend; SMTP settings are configured via environment variables for deployment."
+
