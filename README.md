@@ -61,7 +61,7 @@ The application uses client-side JavaScript to provide interactive behavior:
 - Confirmation prompts for destructive actions
 - Dynamic UI response without requiring page reload for each interaction
 
-JavaScript source files:
+JavaScript  source files:
 
 - `static/js/product_search.js`
 - `static/js/form_validation.js`
