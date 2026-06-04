@@ -68,7 +68,7 @@ JavaScript  source files:
 
 ## Application  Structure
 
-| Layer | Technology | Where It Is Used | Purpose |
+| Layer | Technology | Where It Is Used | Purpose  |
 | --- | --- | --- | --- |
 | Backend Framework | Django | `django_final/settings.py`, `django_final/urls.py`, app `views.py`, `models.py`, `forms.py`, `admin.py`, and `signals.py` | Powers authentication, authorization, CRUD operations, and page rendering |
 | Database | PostgreSQL | Configured through `DATABASE_URL` in `.env` | Stores users, products, imports, exports, projects, and messages persistently |
