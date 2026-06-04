@@ -66,7 +66,7 @@ JavaScript  source files:
 - `static/js/product_search.js`
 - `static/js/form_validation.js`
 
-## Application Structure
+## Application  Structure
 
 | Layer | Technology | Where It Is Used | Purpose |
 | --- | --- | --- | --- |
