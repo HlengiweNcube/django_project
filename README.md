@@ -250,6 +250,20 @@ For local development, console backend is supported:
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 ```
 
+### Production Option for Free Render Tier (No SMTP)
+
+Some free hosting tiers block SMTP ports. To deliver password reset emails in production,
+the project supports Resend's HTTP API backend.
+
+Add to your environment variables:
+
+```env
+RESEND_API_KEY=your_resend_api_key
+DEFAULT_FROM_EMAIL=your_verified_sender@example.com
+```
+
+When `RESEND_API_KEY` is set, the app automatically switches to API-based email delivery.
+
 ## Deployment on Render
 
 ### Required files
@@ -284,6 +298,7 @@ gunicorn django_final.wsgi:application
 - EMAIL_HOST_PASSWORD=your_gmail_app_password
 - EMAIL_USE_TLS
 - DEFAULT_FROM_EMAIL
+- RESEND_API_KEY (optional, recommended on free tier)
 
 ### Post-deployment checks
 

@@ -128,6 +128,10 @@ EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() == 'true'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@stock-app.local')
+RESEND_API_KEY = os.getenv('RESEND_API_KEY', '')
+
+if RESEND_API_KEY:
+    EMAIL_BACKEND = 'django_final.email_backends.ResendEmailBackend'
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
