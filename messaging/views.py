@@ -11,15 +11,23 @@ from .forms import MessageForm
 @login_required
 def inbox(request):
 
-    messages = Message.objects.filter(
+    inbox_messages = Message.objects.filter(
         receiver=request.user,
+        is_archived=False
+    ).order_by('-created_at')
+
+    sent_messages = Message.objects.filter(
+        sender=request.user,
         is_archived=False
     ).order_by('-created_at')
 
     return render(
         request,
         'messaging/inbox.html',
-        {'messages': messages}
+        {
+            'inbox_messages': inbox_messages,
+            'sent_messages': sent_messages,
+        }
     )
 
 

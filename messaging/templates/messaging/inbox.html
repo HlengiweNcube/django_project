@@ -37,7 +37,7 @@
 
     <tbody>
 
-        {% for message in messages %}
+        {% for message in inbox_messages %}
 
         <tr>
 
@@ -58,6 +58,60 @@
 
             </td>
 
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="4" class="text-center">No received messages yet.</td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<h3 class="mt-5">Sent</h3>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-secondary">
+
+        <tr>
+
+            <th>To</th>
+
+            <th>Subject</th>
+
+            <th>Message</th>
+
+            <th>Sent At</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for message in sent_messages %}
+
+        <tr>
+
+            <td>{{ message.receiver.username }}</td>
+
+            <td>{{ message.subject }}</td>
+
+            <td>{{ message.content }}</td>
+
+            <td>{{ message.created_at }}</td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="4" class="text-center">No sent messages yet.</td>
         </tr>
 
         {% endfor %}
