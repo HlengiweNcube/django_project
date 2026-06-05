@@ -312,7 +312,6 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-If your Render database is newly attached, run migrations from the Render shell before first use.
 
 Verify:
 
@@ -334,7 +333,7 @@ Latest local run result:
 - Ran 13 tests
 - Status: OK
 
-Run coverage:
+Ran coverage:
 
 ```bash
 coverage run manage.py test
@@ -346,6 +345,33 @@ Latest local coverage summary:
 
 - Total coverage: 87%
 - HTML report generated at `htmlcov/index.html`
+
+## Automated Testing
+
+The project includes automated tests across multiple Django applications.
+
+Testing covers:
+
+* User registration and authentication
+* Access control and permission checks
+* Product management functionality
+* Import and export operations
+* Internal messaging functionality
+
+Tests are executed using Django's built-in testing framework.
+
+```bash
+python manage.py test
+```
+
+Code coverage can be measured using Coverage.py.
+
+```bash
+coverage run manage.py test
+coverage report
+coverage html
+```
+
 
 Coverage includes:
 
@@ -361,6 +387,36 @@ Coverage includes:
 - Explicit form labels and helper text for search inputs
 - Keyboard-accessible controls and visible focus handling
 - Responsive Bootstrap layout across device sizes
+
+## CRUD Operations
+
+The application implements Create, Read, Update, and Delete (CRUD) functionality across multiple modules.
+
+### Products
+
+* Create Product
+* View Product List
+* Update Product
+* Delete Product
+
+### Imports
+
+* Create Import Records
+* View Import History
+
+### Exports
+
+* Create Export Records
+* View Export History
+
+### Messaging
+
+* Send Messages
+* View Inbox Messages
+* Archive Messages
+
+These features demonstrate practical use of Django models, forms, views, templates, URL routing, and database operations.
+
 
 ## Assignment Rubric Mapping
 
@@ -394,3 +450,65 @@ Store screenshots in the `submission_evidence/` folder using these exact names:
 - `requirements.txt`
 - `README.md`
 - `submission_evidence/` screenshots
+
+## References
+
+### Django Documentation
+
+Django Software Foundation. Django Documentation.
+
+https://docs.djangoproject.com/
+
+### Bootstrap Documentation
+
+Bootstrap Team. Bootstrap Documentation.
+
+https://getbootstrap.com/docs/5.3/
+
+### PostgreSQL Documentation
+
+PostgreSQL Global Development Group. PostgreSQL Documentation.
+
+https://www.postgresql.org/docs/
+
+### Render Documentation
+
+Render Documentation.
+
+https://render.com/docs
+
+### WhiteNoise Documentation
+
+https://whitenoise.readthedocs.io/
+
+### dj-database-url Documentation
+
+https://github.com/jazzband/dj-database-url
+
+### psycopg2 Documentation
+
+https://www.psycopg.org/docs/
+
+### Mozilla Developer Network (MDN)
+
+JavaScript Documentation
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+Accessibility Documentation
+
+https://developer.mozilla.org/en-US/docs/Web/Accessibility
+
+### GitHub Documentation
+
+https://docs.github.com/
+
+### Course Materials
+
+Frameworks Development Walkthrough 11 – Testing and Coverage
+
+Frameworks Development Walkthrough 12 – Deployment and PostgreSQL
+
+Frameworks Development Walkthrough 13 – Authentication and Password Reset
+
+Frameworks Development Walkthrough 14 – JavaScript Concepts
