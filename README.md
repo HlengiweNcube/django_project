@@ -7,6 +7,11 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 - Hosted URL: https://django-project-e9gn.onrender.com
 - Hosting provider: Render
 
+## Project Links
+
+- GitHub repository: https://github.com/HlengiweNcube/django_project
+- Live Render app: https://django-project-e9gn.onrender.com
+
 ## Core Features Implemented
 
 ### 1) User Management
@@ -277,7 +282,7 @@ When `RESEND_API_KEY` is set, the app automatically switches to API-based email 
 - Build command:
 
 ```bash
-pip install -r requirements.txt && python manage.py collectstatic --noinput
+pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
 ```
 
 - Start command:
@@ -365,9 +370,27 @@ Coverage includes:
 - Frontend quality: Bootstrap templates + JavaScript interactions
 - Hosted app evidence: Render deployment and live URL
 
+## Submission Evidence
+
+Store screenshots in the `submission_evidence/` folder using these exact names:
+
+- `01_tests_all_ok.png`
+- `02_coverage_report.png`
+- `03_coverage_html_index.png`
+- `04_login_forgot_password_link.png`
+- `05_password_reset_form.png`
+- `06_password_reset_done.png`
+- `07_password_reset_confirm.png`
+- `08_password_reset_complete.png`
+- `09_skip_to_content_and_nav_aria.png`
+- `10_product_search_label_and_helper.png`
+- `11_render_live_home.png`
+- `12_render_live_feature_page.png`
+
 ## Included in the ZIP File
 
 - All Django source files
 - Deployment files (`Procfile`, `runtime.txt`, `render.yaml`)
 - `requirements.txt`
 - `README.md`
+- `submission_evidence/` screenshots
