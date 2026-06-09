@@ -22,6 +22,10 @@
 
             {{ form.as_p }}
 
+            <p class="text-muted mb-3">
+                Tax will be automatically applied at {{ default_tax_rate_percent|floatformat:2 }}% based on the product unit price.
+            </p>
+
             {% if has_products %}
             <button
                 type="submit"

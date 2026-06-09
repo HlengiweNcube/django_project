@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load currency_filters %}
 
 {% block content %}
 
@@ -75,6 +76,66 @@
                         <h5>Total Projects</h5>
 
                         <h2>{{ total_projects }}</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row g-3 mt-1">
+
+            <div class="col-12 col-md-6">
+
+                <div class="card border-success h-100">
+
+                    <div class="card-body">
+
+                        <h5 class="text-success">Import Tax Paid ({{ current_month_name }})</h5>
+
+                        <h3 class="mb-0">{{ monthly_import_tax|currency }}</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+
+                <div class="card border-warning h-100">
+
+                    <div class="card-body">
+
+                        <h5 class="text-warning">Export Tax Collected ({{ current_month_name }})</h5>
+
+                        <h3 class="mb-0">{{ monthly_export_tax|currency }}</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row g-3 mt-1">
+
+            <div class="col-12">
+
+                <div class="card border-secondary h-100">
+
+                    <div class="card-body">
+
+                        <h5 class="text-secondary">Net Tax Position ({{ current_month_name }})</h5>
+
+                        <h3 class="mb-0">{{ monthly_net_tax|currency }}</h3>
+
+                        <small class="text-muted">
+                            Calculated as export tax collected minus import tax paid.
+                        </small>
 
                     </div>
 

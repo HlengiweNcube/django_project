@@ -148,3 +148,6 @@ if not DEBUG and IS_RENDER:
     SECURE_HSTS_PRELOAD = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Default tax rate applied to import and export records.
+DEFAULT_TAX_RATE = os.getenv('DEFAULT_TAX_RATE', '0.15')

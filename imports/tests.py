@@ -1,8 +1,10 @@
 from django.contrib.auth.models import Permission, User
 from django.test import TestCase
 from django.urls import reverse
+from decimal import Decimal
 
 from inventory.models import Product
+from .models import ImportRecord
 
 
 class ImportTests(TestCase):
@@ -37,3 +39,9 @@ class ImportTests(TestCase):
 		self.assertEqual(response.status_code, 302)
 		self.product.refresh_from_db()
 		self.assertEqual(self.product.quantity, 8)
+
+		import_record = ImportRecord.objects.latest('id')
+		self.assertEqual(import_record.unit_price, Decimal('250.00'))
+		self.assertEqual(import_record.subtotal_amount, Decimal('750.00'))
+		self.assertEqual(import_record.tax_amount, Decimal('112.50'))
+		self.assertEqual(import_record.total_amount, Decimal('862.50'))

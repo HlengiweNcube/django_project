@@ -4,6 +4,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils import timezone
+from django.db.models import Sum, DecimalField, Value
+from django.db.models.functions import Coalesce
 from inventory.models import Product
 from inventory.models import Project
 from imports.models import ImportRecord
@@ -52,6 +55,8 @@ def login_view(request):
 @login_required
 def dashboard_view(request):
 
+    today = timezone.localdate()
+
     total_products = Product.objects.count()
 
     total_imports = ImportRecord.objects.count()
@@ -59,6 +64,30 @@ def dashboard_view(request):
     total_exports = ExportRecord.objects.count()
 
     total_projects = Project.objects.filter(owner=request.user).count()
+
+    monthly_import_tax = ImportRecord.objects.filter(
+        import_date__year=today.year,
+        import_date__month=today.month,
+    ).aggregate(
+        total_tax=Coalesce(
+            Sum('tax_amount'),
+            Value(0),
+            output_field=DecimalField(max_digits=12, decimal_places=2)
+        )
+    )['total_tax']
+
+    monthly_export_tax = ExportRecord.objects.filter(
+        export_date__year=today.year,
+        export_date__month=today.month,
+    ).aggregate(
+        total_tax=Coalesce(
+            Sum('tax_amount'),
+            Value(0),
+            output_field=DecimalField(max_digits=12, decimal_places=2)
+        )
+    )['total_tax']
+
+    monthly_net_tax = monthly_export_tax - monthly_import_tax
 
     low_stock_products = Product.objects.filter(
         quantity__lt=10
@@ -77,6 +106,14 @@ def dashboard_view(request):
         'total_exports': total_exports,
 
         'total_projects': total_projects,
+
+        'monthly_import_tax': monthly_import_tax,
+
+        'monthly_export_tax': monthly_export_tax,
+
+        'monthly_net_tax': monthly_net_tax,
+
+        'current_month_name': today.strftime('%B'),
 
         'low_stock_products': low_stock_products,
     }

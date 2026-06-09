@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load currency_filters %}
 
 {% block content %}
 
@@ -28,6 +29,10 @@
             <th>Product</th>
             <th>Supplier</th>
             <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+            <th>Tax ({{ default_tax_rate_percent|floatformat:2 }}%)</th>
+            <th>Total</th>
             <th>Import Date</th>
 
         </tr>
@@ -45,6 +50,14 @@
             <td>{{ item.supplier_name }}</td>
 
             <td>{{ item.quantity_imported }}</td>
+
+            <td>{{ item.unit_price|currency }}</td>
+
+            <td>{{ item.subtotal_amount|currency }}</td>
+
+            <td>{{ item.tax_amount|currency }}</td>
+
+            <td>{{ item.total_amount|currency }}</td>
 
             <td>{{ item.import_date }}</td>
 

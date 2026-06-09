@@ -1,8 +1,10 @@
 from django.contrib.auth.models import Permission, User
 from django.test import TestCase
 from django.urls import reverse
+from decimal import Decimal
 
 from inventory.models import Product
+from .models import ExportRecord
 
 
 class ExportTests(TestCase):
@@ -37,6 +39,12 @@ class ExportTests(TestCase):
 		self.assertEqual(response.status_code, 302)
 		self.product.refresh_from_db()
 		self.assertEqual(self.product.quantity, 8)
+
+		export_record = ExportRecord.objects.latest('id')
+		self.assertEqual(export_record.unit_price, Decimal('199.99'))
+		self.assertEqual(export_record.subtotal_amount, Decimal('799.96'))
+		self.assertEqual(export_record.tax_amount, Decimal('119.99'))
+		self.assertEqual(export_record.total_amount, Decimal('919.95'))
 
 	def test_export_cannot_exceed_available_stock(self):
 		self.client.login(username='exporter', password='StrongPass123!@#')
