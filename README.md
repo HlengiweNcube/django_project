@@ -37,6 +37,14 @@ A modular Django web application that uses PostgreSQL for persistent data storag
 - Archive messages
 - Archive action restricted to intended receiver
 
+### 3.1) Tax Calculations and Reporting
+
+- Import and export records automatically calculate tax using a configurable default tax rate
+- Each record stores a snapshot of the product unit price at the time of the transaction
+- The system calculates and stores subtotal, tax amount, and total amount for each import/export record
+- The dashboard shows monthly import tax paid, export tax collected, and net tax position
+- Currency values are formatted consistently across tables and dashboard summaries
+
 ### 4) Authorization (Roles and Permissions)
 
 - Roles implemented with Django Groups:
@@ -337,16 +345,32 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-If you are using Render, run the commands above in the Render Shell for your web service.
+Render free tier note:
 
-Quick Render superuser flow:
+- Free Render services may not provide Shell access.
+- If Shell is unavailable, create the first admin account during deploy with `createsuperuser --noinput`.
 
-1. Open Render dashboard and select the web service.
-2. Open Shell.
-3. Run: python manage.py migrate
-4. Run: python manage.py createsuperuser
-5. Open: https://django-project-e9gn.onrender.com/admin/
-6. Sign in with the new superuser account.
+Free-tier friendly superuser setup:
+
+1. In Render environment variables, add:
+  - `DJANGO_SUPERUSER_USERNAME`
+  - `DJANGO_SUPERUSER_EMAIL`
+  - `DJANGO_SUPERUSER_PASSWORD`
+
+2. Temporarily update the Render Build Command to:
+
+```bash
+pip install -r requirements.txt && python manage.py migrate && python manage.py createsuperuser --noinput || true && python manage.py collectstatic --noinput
+```
+
+3. Deploy once, then open:
+  - https://django-project-e9gn.onrender.com/admin/
+
+4. Sign in with the credentials from the environment variables.
+
+5. After successful login, remove the `createsuperuser --noinput || true` part from the Build Command.
+
+6. For security, rotate or remove `DJANGO_SUPERUSER_PASSWORD` from Render environment variables after setup.
 
 
 Verify:
