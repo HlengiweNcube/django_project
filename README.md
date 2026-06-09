@@ -205,6 +205,31 @@ Use this superuser account to:
 - Assign users to `Manager` or `Staff`
 - Access all admin-managed data
 
+### Admin Screen Guidelines (How To Use It)
+
+1. Open the admin login page:
+  - Local: http://127.0.0.1:8000/admin/
+  - Production: https://django-project-e9gn.onrender.com/admin/
+
+2. Sign in with a superuser account.
+
+3. To create or update user roles:
+  - Go to Users and open the target user.
+  - Add the user to either Manager or Staff in Groups.
+  - Save.
+
+4. To verify permissions quickly:
+  - Staff should only have view permissions for inventory/import/export/project records.
+  - Manager should have full create/read/update/delete permissions.
+
+5. To review tax-enabled records:
+  - Open Import records and Export records in admin.
+  - Confirm Unit Price, Subtotal, Tax Amount, and Total Amount are being populated.
+
+6. Safety note:
+  - Use admin for trusted internal users only.
+  - Keep DEBUG=False in production and use strong superuser credentials.
+
 ### 7) Run the app
 
 ```bash
@@ -311,6 +336,17 @@ gunicorn django_final.wsgi:application
 python manage.py migrate
 python manage.py createsuperuser
 ```
+
+If you are using Render, run the commands above in the Render Shell for your web service.
+
+Quick Render superuser flow:
+
+1. Open Render dashboard and select the web service.
+2. Open Shell.
+3. Run: python manage.py migrate
+4. Run: python manage.py createsuperuser
+5. Open: https://django-project-e9gn.onrender.com/admin/
+6. Sign in with the new superuser account.
 
 
 Verify:
