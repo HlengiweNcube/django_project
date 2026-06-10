@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from datetime import date
+from pathlib import Path
 
 from .models import UserProfile
 from inventory.models import Product
@@ -99,3 +100,35 @@ class UserManagementTests(TestCase):
 		self.assertEqual(response.context['monthly_import_tax'], 30)
 		self.assertEqual(response.context['monthly_export_tax'], 45)
 		self.assertEqual(response.context['monthly_net_tax'], 15)
+
+	def test_submission_evidence_page_requires_login(self):
+		response = self.client.get(reverse('submission_evidence'))
+		self.assertEqual(response.status_code, 302)
+
+	def test_submission_evidence_page_displays_for_authenticated_user(self):
+		user = User.objects.create_user(
+			username='evidenceuser',
+			email='evidence@example.com',
+			password='StrongPass123!@#'
+		)
+		self.client.login(username='evidenceuser', password='StrongPass123!@#')
+
+		response = self.client.get(reverse('submission_evidence'))
+		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(response, 'user_management/submission_evidence.html')
+
+	def test_submission_evidence_file_serves_existing_image(self):
+		user = User.objects.create_user(
+			username='fileuser',
+			email='fileuser@example.com',
+			password='StrongPass123!@#'
+		)
+		self.client.login(username='fileuser', password='StrongPass123!@#')
+
+		evidence_path = Path(__file__).resolve().parent.parent / 'submission_evidence'
+		filename = '01_tests_all_ok.png'
+		if not (evidence_path / filename).exists():
+			self.skipTest('Expected submission evidence image not found in repository.')
+
+		response = self.client.get(reverse('submission_evidence_file', args=[filename]))
+		self.assertEqual(response.status_code, 200)

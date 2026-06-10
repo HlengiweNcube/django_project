@@ -4,9 +4,11 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import FileResponse, Http404
 from django.utils import timezone
 from django.db.models import Sum, DecimalField, Value
 from django.db.models.functions import Coalesce
+from pathlib import Path
 from inventory.models import Product
 from inventory.models import Project
 from imports.models import ImportRecord
@@ -169,3 +171,41 @@ def update_profile(request):
             'contact_form': contact_form,
         }
     )
+
+
+@login_required
+def submission_evidence_view(request):
+    evidence_dir = Path(__file__).resolve().parent.parent / 'submission_evidence'
+    image_suffixes = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
+
+    evidence_files = []
+    if evidence_dir.exists() and evidence_dir.is_dir():
+        evidence_files = sorted(
+            [
+                item.name
+                for item in evidence_dir.iterdir()
+                if item.is_file() and item.suffix.lower() in image_suffixes
+            ]
+        )
+
+    return render(
+        request,
+        'user_management/submission_evidence.html',
+        {
+            'evidence_files': evidence_files,
+        }
+    )
+
+
+@login_required
+def submission_evidence_file_view(request, filename):
+    evidence_dir = Path(__file__).resolve().parent.parent / 'submission_evidence'
+    target_file = (evidence_dir / filename).resolve()
+
+    if not str(target_file).startswith(str(evidence_dir.resolve())):
+        raise Http404('File not found.')
+
+    if not target_file.exists() or not target_file.is_file():
+        raise Http404('File not found.')
+
+    return FileResponse(target_file.open('rb'))
